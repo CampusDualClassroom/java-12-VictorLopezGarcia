@@ -74,22 +74,17 @@ public class Car {
     public void turnAngleOfWheels(int angle){
         if(angle < MIN_WHEEL_ANGLE) {
             this.wheelsAngle = MIN_WHEEL_ANGLE;
-        } else if (angle > MAX_WHEEL_ANGLE) {
-            this.wheelsAngle = MAX_WHEEL_ANGLE;
-        } else {
-            this.wheelsAngle = angle;
-        }
+        } else this.wheelsAngle = Math.min(angle, MAX_WHEEL_ANGLE);
         System.out.println("Ángulo de las ruedas ajustado a: " + this.wheelsAngle + " grados.");
     }
 
     public void setReverse(boolean reverse){
+        this.reverse = reverse;
         if(this.speedometer == 0 && reverse) {
-            this.reverse = reverse;
             this.gear = "R";
         } else if(reverse) {
             System.out.println("No es posible cambiar a reversa mientras el vehículo está en movimiento.");
         }else {
-            this.reverse = false;
             this.gear = "N";
             System.out.println("Saliendo de marcha atrás.");
         }
